@@ -1,19 +1,17 @@
 import React from 'react';
-
+import { useDispatch } from 'react-redux';
+import * as connectionActions from '../../features/connection';
 import './SignIn.css';
 
 
- export const connexion=()=>({
-    type:"connexion",
-    payload:{nameUser:"Alex"},
-})
+
 /**show Page Sign-in
  *  
  * @returns {JSX}
  */
 
  export default function SignIn(){
-
+    const dispatch = useDispatch()
   return ( 
     <>   
         <main className="main bg-dark space">
@@ -31,7 +29,7 @@ import './SignIn.css';
                         <input type="checkbox" id="remember-me" /><label htmlFor="remember-me">Remember me</label>
                     </div>
 
-                    <button type="button" className="sign-in-button" onClick={()=>{ connexion() }}>Sign In</button>
+                    <button type="button" className="sign-in-button" onClick={()=>{ dispatch(connectionActions.connecte()) }}>Sign In</button>
 
                 </form>
             </section>
