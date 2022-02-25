@@ -1,8 +1,11 @@
 import axios from 'axios' 
 
-const apiUrl=`http://localhost:3001`; 
+const apiUrl=`http://localhost:3001/api/v1`; 
 
-export async function callApi(params){
-    const response= await axios.post(apiUrl+'/user/login', params)
-    console.log(response) 
+export async function axiosToken(params){
+    return await axios.post(apiUrl+'/user/login', params)
+        .then(response=>{
+            return response.data.body.token
+        })
+
 }

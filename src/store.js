@@ -1,10 +1,12 @@
 
-import connectionReducer from './features/connection';
-import { configureStore } from '@reduxjs/toolkit'; 
+import connectionReduce from './features/connection'
+import { configureStore, createReducer } from '@reduxjs/toolkit'; 
 
 export default configureStore({
     reducer:{
-        connection: connectionReducer,
+        connection: connectionReduce,
 
     }
 })
+
+
