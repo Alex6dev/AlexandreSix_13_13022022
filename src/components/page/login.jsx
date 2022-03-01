@@ -1,29 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import './SignIn.css';
-import * as connectionActions from '../../features/connection'
-
+import './login.css';
+import * as connectionActions from '../../features/connection';
+import { axiosToken,axiosSignup } from '../../CallApi/callApi';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 /**show Page Sign-in
  *  
  * @returns {JSX}
  */
 
- export default function SignIn(){
+export default function SignIn(){
     const dispatch = useDispatch()
     const [email, setEmail]=useState()
     const [password, setPassword]=useState()
     const [remember,setRemember]=useState()
-    function submit(){
-        dispatch(connectionActions.getToken({email,password})) 
-    }
+    const token = useSelector((state)=>state.connection.token)
+    const history=useHistory()
 
-
-    /*useEffect(()=>{
-        if(token){
-            return navigate("/profile")
+    async function submit(){
+        console.log({email,password})
+        console.log({emai:'steve@rogers.com',passwor:'password456'})
+        const reponseAxios= await axiosToken({email,password})
+        if(reponseAxios){
+            dispatch(connectionActions.getToken(reponseAxios))
+            
         }
-    },[token])*/
+    }
+   
+    
+    useEffect(()=>{
+        if(token){
+            const reponseAxiosUser= axiosSignup(token)
+            console.log(token)
+            history.push("/profile")
+        }
+    },[token])
   return ( 
     <>   
         <main className="main bg-dark space">

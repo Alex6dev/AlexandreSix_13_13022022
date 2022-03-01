@@ -2,8 +2,8 @@ import React from 'react';
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import Header from './components/Header/Header';
 import Home from './components/page/Home';
-import SignIn from './components/page/SignIn';
-import UserProfile from './components/page/UserProfile.jsx';
+import SignIn from './components/page/login';
+import UserProfile from './components/page/profile.jsx';
 
 import Footer from './components/Footer/Footer';
 
@@ -15,7 +15,7 @@ export default function App(){
         <Header />
           <Switch>
             <Route exact path="/" component={ Home }/>
-            <Route path="/sign-in" component={ SignIn }/>
+            <Route path="/login" component={ SignIn }/>
             <Route path="/profile" component={ UserProfile }/>
           </Switch>            
         <Footer/>

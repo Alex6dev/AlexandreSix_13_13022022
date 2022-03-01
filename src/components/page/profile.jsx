@@ -1,6 +1,6 @@
 import React from 'react';
 import AccountCard from '../AccountCard/AccountCard'; 
-import './UserProfile.css';
+import './profile.css';
 
 let tab=[
     {

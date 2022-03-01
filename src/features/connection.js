@@ -1,5 +1,5 @@
 import { createSlice ,createReducer,createAction} from "@reduxjs/toolkit"
-import { response } from "msw"
+
 import {  axiosToken } from "../CallApi/callApi"
 
 const connectionSlice= createSlice({
@@ -7,18 +7,14 @@ const connectionSlice= createSlice({
     initialState:{
         isAuthenticated:false,
         user:{},
-        token:''
+        token:null,
     },
     reducers:{
-        getToken: async (state,action)=>{
-            
-            console.log(action.payload)
-            console.log({email:'steve@rogers.com',password:'password456'})
-            const reponseAxios=await axiosToken(action.payload)
-            
+        getToken:  (state,action)=>{
             return {
                 ...state,
-                token:`${reponseAxios}`
+                isAuthenticated:true,
+                token:`${action.payload}`
             }
             
         },
