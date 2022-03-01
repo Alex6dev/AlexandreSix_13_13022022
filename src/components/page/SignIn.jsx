@@ -15,7 +15,7 @@ import * as connectionActions from '../../features/connection'
     const [password, setPassword]=useState()
     const [remember,setRemember]=useState()
     function submit(){
-        dispatch(connectionActions.emailAction({email,password})) 
+        dispatch(connectionActions.getToken({email,password})) 
     }
 
 

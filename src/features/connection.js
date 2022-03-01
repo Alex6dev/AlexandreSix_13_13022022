@@ -1,34 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice ,createReducer,createAction} from "@reduxjs/toolkit"
+import { response } from "msw"
 import {  axiosToken } from "../CallApi/callApi"
-
-
-
 
 const connectionSlice= createSlice({
     name:'connection',
-    initialState:null,
+    initialState:{
+        isAuthenticated:false,
+        user:{},
+        token:''
+    },
     reducers:{
-        emailAction:async (state,action)=>{
-            try{
+        getToken: async (state,action)=>{
             
             console.log(action.payload)
             console.log({email:'steve@rogers.com',password:'password456'})
-            const token=await axiosToken(action.payload)
+            const reponseAxios=await axiosToken(action.payload)
             
+            return {
+                ...state,
+                token:`${reponseAxios}`
+            }
             
-            if(token){return token}                
-            }catch(error){ }
-
         },
-
-        /*connecte:(state)=>{
-            {email:'steve@rogers.com',password:'password456'}
-            return null
-        }*/
-
     }
 })
 
 const { actions, reducer } = connectionSlice
-export const { emailAction } = actions
+export const { getToken } = actions
 export default reducer
