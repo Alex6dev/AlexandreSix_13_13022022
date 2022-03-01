@@ -1,13 +1,14 @@
-import { createSlice ,createReducer,createAction} from "@reduxjs/toolkit"
+import { createSlice} from "@reduxjs/toolkit"
 
-import {  axiosToken } from "../CallApi/callApi"
 
 const connectionSlice= createSlice({
     name:'connection',
     initialState:{
         isAuthenticated:false,
-        user:{},
         token:null,
+        firstName:null,
+        lastName:null,
+
     },
     reducers:{
         getToken:  (state,action)=>{
@@ -18,9 +19,17 @@ const connectionSlice= createSlice({
             }
             
         },
+        getUser:  (state,action)=>{
+            return {
+                ...state,
+                firstName:action.payload.firstName,
+                lastName:action.payload.lastName
+            }
+            
+        }
     }
 })
 
 const { actions, reducer } = connectionSlice
-export const { getToken } = actions
+export const { getToken,getUser } = actions
 export default reducer

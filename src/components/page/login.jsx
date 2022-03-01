@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './login.css';
 import * as connectionActions from '../../features/connection';
-import { axiosToken,axiosSignup } from '../../CallApi/callApi';
+import { axiosToken, axiosProfile } from '../../CallApi/callApi';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -23,18 +23,22 @@ export default function SignIn(){
     async function submit(){
         console.log({email,password})
         console.log({emai:'steve@rogers.com',passwor:'password456'})
-        const reponseAxios= await axiosToken({email,password})
-        if(reponseAxios){
-            dispatch(connectionActions.getToken(reponseAxios))
+        const responseAxios= await axiosToken({email,password})
+        if(responseAxios){
+            dispatch(connectionActions.getToken(responseAxios))
             
         }
     }
-   
+
+    async function  getUserAxios(){
+        const axios=await axiosProfile(token)
+        console.log(axios.firstName)           
+        dispatch(connectionActions.getUser({firstName:axios.firstName,lastName:axios.lastName}))
+    }
     
     useEffect(()=>{
-        if(token){
-            const reponseAxiosUser= axiosSignup(token)
-            console.log(token)
+        if(token){      
+            getUserAxios()  
             history.push("/profile")
         }
     },[token])
