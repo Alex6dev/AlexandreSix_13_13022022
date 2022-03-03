@@ -5,7 +5,10 @@ import iconMoney from '../../../assets/iconMoney.png';
 import iconSecurity from '../../../assets/iconSecurity.png';
 
 /**show item feature 
- *  
+ *  @param {object} props.element
+ *  @param {string} props.element.img
+ *  @param {string} props.element.title
+ *  @param {string} props.element.text
  * @returns {JSX}
  */
 
@@ -41,3 +44,4 @@ export default function FeatureItem(props){
   )   
 
 }
+

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 
-/**show Page User profile
+/**show Page Error
  *  
  * @returns {JSX}
  */

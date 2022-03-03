@@ -25,7 +25,7 @@ const informationFeature=[
     text:"We use top of the line encryption to make sure your data and money is always safe.",
   }
 ]
-/**show Page Dashboard 
+/**show Page Home 
  *  
  * @returns {JSX}
  */

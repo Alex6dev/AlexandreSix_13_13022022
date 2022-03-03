@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './login.css';
 import * as connectionActions from '../../features/connection';
-import { axiosToken, axiosProfile } from '../../CallApi/callApi';
+import { axiosToken, axiosProfile } from '../../remote/callApi';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ export default function SignIn(){
             dispatch(connectionActions.getToken({token:responseAxios,email:email}))
         }
     }
-    
+    //check if I'm not registered
     function whoAmI(rememberMe){
         if(rememberMe){
             valueEmail=stateReduxEmail
@@ -47,6 +47,7 @@ export default function SignIn(){
         }
     }
     whoAmI(stateReduxRememberMe)
+    
     useEffect(()=>{
         if(stateReduxToken){      
             getUserAxios()  

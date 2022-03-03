@@ -6,6 +6,7 @@ import SignIn from './components/page/login';
 import UserProfile from './components/page/profile.jsx';
 
 import Footer from './components/Footer/Footer';
+import Error from './components/page/Error';
 
 //Element page home and router contained
 
@@ -17,6 +18,7 @@ export default function App(){
             <Route exact path="/" component={ Home }/>
             <Route path="/login" component={ SignIn }/>
             <Route path="/profile" component={ UserProfile }/>
+            <Route path="*" component={ Error }/>
           </Switch>            
         <Footer/>
       </Router>   

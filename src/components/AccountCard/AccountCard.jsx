@@ -7,7 +7,7 @@ import React from 'react';
  * @returns {JSX}
  */
 
- export default function AccountCard(props){
+ export default function AccountCard(){
 
   return ( 
     <>   

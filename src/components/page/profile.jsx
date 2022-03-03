@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { axiosPutUser } from '../../CallApi/callApi';
+import { axiosPutUser } from '../../remote/callApi';
 import AccountCard from '../AccountCard/AccountCard'; 
 import './profile.css';
 import * as connectionActions from '../../features/connection';
@@ -45,6 +45,8 @@ let tab=[
         dispatch(connectionActions.getUser({firstName:axios.firstName,lastName:axios.lastName}))
         setdisplayEditName(!displayEditName)
     }
+
+    //check if I am authenticated
     if(stateReduxToken){
         return ( 
             <>    
@@ -94,6 +96,7 @@ let tab=[
         )   
 
         }else{
+            //else page of error
             return <Error/>
         }
     

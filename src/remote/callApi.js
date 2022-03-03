@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const apiUrl=`http://localhost:3001/api/v1`; 
 
+//find the token
 export function axiosToken(params){
     return axios.post(apiUrl+'/user/login', params)
         .then(response=>{
@@ -9,6 +10,8 @@ export function axiosToken(params){
         })
 
 }
+
+//look up user information
 export function axiosProfile(token){
     return axios.post(apiUrl+'/user/profile',{},{
         headers:{
@@ -21,6 +24,7 @@ export function axiosProfile(token){
 
 }
 
+//edit user information
 export function axiosPutUser(token,newUser){
     return axios.put(apiUrl+'/user/profile',newUser,{
         headers:{
