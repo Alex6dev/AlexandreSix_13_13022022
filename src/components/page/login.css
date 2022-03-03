@@ -2,9 +2,7 @@
     background-color: #12002b;
   }
 
-.main {
-    height: 75vh;
-}
+
 .space{
   padding-top: 2rem;
 }
@@ -56,4 +54,17 @@
     padding: 5px;
     font-size: 1.2rem;
   }
-  
+  .bg{
+    height: 80vh;
+  }
+  @media (min-width: 720px) {
+    .main{
+      height: 80vh;
+    }
+  }
+  @media (min-width: 920px) {
+
+    .main {
+    height: 80vh;
+}
+  }

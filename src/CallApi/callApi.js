@@ -20,3 +20,15 @@ export function axiosProfile(token){
         })
 
 }
+
+export function axiosPutUser(token,newUser){
+    return axios.put(apiUrl+'/user/profile',newUser,{
+        headers:{
+            Authorization:`Bearer ${token}`
+        }
+    })
+        .then(response=>{
+            return response.data.body
+        })
+
+}

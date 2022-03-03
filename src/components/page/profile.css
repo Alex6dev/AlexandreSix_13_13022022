@@ -34,6 +34,7 @@
   .account-content-wrapper {
     width: 100%;
     flex: 1;
+    text-align: center;
   }
   
   .edit-button {
@@ -49,6 +50,7 @@
   }
   .title-welcome{
       padding-top: 1rem;
+      margin-bottom: 2rem;
   }
   
   .transaction-button {
@@ -76,4 +78,22 @@
       width: 200px;
     }
   }
+  @media (min-width: 920px) {
+    .account-content-wrapper {
+      text-align: start;
+    }
+  }
+.input-new{
+  width: 10rem;
+  height: 2rem;
+  margin: 0.5rem;
+}
+.button-edit{
+  width: 5rem;
+  height: 2rem;
+  margin: 0.5rem;
+  
+  color: rgb(255, 255, 255);
+  background-color: #00bc77;
+}
   

@@ -4,18 +4,28 @@ import { createSlice} from "@reduxjs/toolkit"
 const connectionSlice= createSlice({
     name:'connection',
     initialState:{
-        isAuthenticated:false,
+        email:null,
+        isConnected:false,
         token:null,
+        rememberMe:false,
         firstName:null,
         lastName:null,
 
+
     },
     reducers:{
+        rememberMeChange:(state)=>{
+            return{
+                ...state,
+                rememberMe:!state.rememberMe
+            }
+        },
         getToken:  (state,action)=>{
             return {
                 ...state,
-                isAuthenticated:true,
-                token:`${action.payload}`
+                email:action.payload.email,
+                isConnected:true,
+                token:`${action.payload.token}`
             }
             
         },
@@ -25,11 +35,32 @@ const connectionSlice= createSlice({
                 firstName:action.payload.firstName,
                 lastName:action.payload.lastName
             }
-            
+        },
+        signOut:(state)=>{
+            if(state.rememberMe){
+                return{
+                    ...state,
+                    isConnected:false,
+                    token:null,
+                    firstName:null,
+                    lastName:null,
+                }
+            }else{
+                return{
+                    ...state,
+                    email:null,
+                    isConnected:false,
+                    token:null,
+                    rememberMe:false,
+                    firstName:null,
+                    lastName:null,
+                }
+            }
+
         }
     }
 })
 
 const { actions, reducer } = connectionSlice
-export const { getToken,getUser } = actions
+export const { getToken,getUser,signOut,rememberMeChange } = actions
 export default reducer
