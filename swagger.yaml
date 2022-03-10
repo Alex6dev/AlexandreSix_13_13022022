@@ -8,7 +8,7 @@ host: localhost:3001
 basePath: /api/v1
 tags:
   - name: User Module
-  - name: Transaction
+  - name: Transaction Module
 schemes:
   - http
 paths:
@@ -115,43 +115,47 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /transactions/month:
-    post:
+  /transactions/getTranssaction:
+    get:
       security:
         - Bearer: []
       tags:
-        - Transaction
+        - Transaction Module
       summary: Transactions API
       description: API for fetching list of the month ask
       parameters:
+        - in: query
+          type: string
+          name: Month
+          description: search this month
+          required: true
+        - in: query
+          type: string
+          name: Year
+          description: indicate the year of research
+          required: true  
         - in: header
           type: string
           name: Authorization
           description: Attach Bearer JWT token
           required: true
-        - in: body
-          name: body
-          description: indicate which month we are looking for
-          required: true
-          schema:
-            $ref: '#/definitions/TransactionsMonth'
       produces:
         - application/json
       responses:
         '200':
           description: transactions month retrieved successully
           schema:
-            $ref: '#/definitions/TransactionsMonthResponse'
+            $ref: '#/definitions/GetTransactionsResponse'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
   /transactions/{transactionID}:
-    post:
+    get:
       security:
         - Bearer: []
       tags:
-        - Transaction
+        - Transaction Module
       summary:  Transaction API
       description: API find transaction by ID
       operationId: getTransactionById
@@ -182,7 +186,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Transaction
+        - Transaction Module
       summary: Transaction API
       description: update a transaction to the database
       operationId: updateTransactionById
@@ -219,7 +223,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Transaction
+        - Transaction Module
       summary: Transaction API
       description: delete a transaction to the database
       operationId: deleteTransactionById
@@ -238,6 +242,8 @@ paths:
       produces:
         - application/json
       responses:
+        '204':
+          description: demande resource delete 
         '400':
           description: Invalid TransactionID
         '500':
@@ -247,7 +253,7 @@ paths:
       security:
         - Bearer: []
       tags:
-        - Transaction
+        - Transaction Module
       summary: Transaction API
       description: add a transaction to the database
       parameters:
@@ -327,12 +333,7 @@ definitions:
         type: string
       lastName:
         type: string
-  TransactionsMonth:
-    type: object
-    properties:
-      month:
-        type: string
-  TransactionsMonthResponse:
+  GetTransactionsResponse:
     type: object
     properties:
       status:

@@ -14,12 +14,6 @@ const connectionSlice= createSlice({
 
     },
     reducers:{
-        rememberMeChange:(state)=>{
-            return{
-                ...state,
-                rememberMe:!state.rememberMe
-            }
-        },
         getToken:  (state,action)=>{
             return {
                 ...state,
@@ -62,5 +56,5 @@ const connectionSlice= createSlice({
 })
 
 const { actions, reducer } = connectionSlice
-export const { getToken,getUser,signOut,rememberMeChange } = actions
+export const { getToken,getUser,signOut } = actions
 export default reducer

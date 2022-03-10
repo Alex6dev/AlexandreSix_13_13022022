@@ -17,18 +17,12 @@ export default function SignIn(){
     const [email, setEmail]=useState()
     const [password, setPassword]=useState()
     const history=useHistory()
-    var valueEmail=undefined
-    const stateReduxRememberMe=useSelector((state)=>state.connection.rememberMe)
-    const stateReduxEmail=useSelector((state)=>state.connection.email)
     const stateReduxToken=useSelector((state)=>state.connection.token)
 
 
     async function  getUserAxios(){
         const axios=await axiosProfile(stateReduxToken)           
         dispatch(connectionActions.getUser({firstName:axios.firstName,lastName:axios.lastName}))
-    }
-    function selectRememberMe(){
-        dispatch(connectionActions.rememberMeChange())
     }
     
     async function submit(){
@@ -39,14 +33,6 @@ export default function SignIn(){
             dispatch(connectionActions.getToken({token:responseAxios,email:email}))
         }
     }
-    //check if I'm not registered
-    function whoAmI(rememberMe){
-        if(rememberMe){
-            valueEmail=stateReduxEmail
-            //setEmail(stateReduxEmail)
-        }
-    }
-    whoAmI(stateReduxRememberMe)
     
     useEffect(()=>{
         if(stateReduxToken){      
@@ -63,13 +49,13 @@ export default function SignIn(){
                 <h1>Sign In</h1>
                 <form>
                     <div className="input-wrapper">
-                        <label htmlFor="email">Email</label><input type="text" value={valueEmail} id="username" onChange={e=>setEmail(e.target.value)}/>
+                        <label htmlFor="email">Email</label><input type="text" id="username" onChange={e=>setEmail(e.target.value)}/>
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="password">Password</label><input type="password" id="password" onChange={e=>setPassword(e.target.value)}/>
                     </div>
                     <div className="input-remember">
-                        <label htmlFor="remember-me" ><input type="checkbox" id="remember-me"onClick={()=>selectRememberMe()} />Remember me</label>
+                        <label htmlFor="remember-me" ><input type="checkbox" id="remember-me" />Remember me</label>
                     </div>
 
                     <button type="button" className="sign-in-button" onClick={()=>submit()}>Sign In</button>
