@@ -28,7 +28,7 @@ Creation of a web application allowing customers to log in and manage their acco
 `https://github.com/Alex6dev/AlexandreSix_13_13022022.git` 
 
 - go to the project folder 
-`cd AlexandreSix_12_03012021`
+`cd AlexandreSix_13_13022021`
 
 - install the packages
 `npm install` or `yarn install`
